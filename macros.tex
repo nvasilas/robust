@@ -1,0 +1,99 @@
+\newcommand{\tl}[1]{\textlatin{#1}}
+\newcommand{\gr}[1]{\greektext{#1}}
+\newcommand{\eng}[1]{\begin{otherlanguage}{english} #1 \end{otherlanguage}}
+\newcommand{\greek}[1]{\begin{otherlanguage}{greek} #1 \end{otherlanguage}}
+\renewcommand\thesubfigure{\greektext{\alph{subfigure}}}
+
+\newcommand{\mono}[1]{\tl{\texttt{#1}}}
+\newcommand{\mathtxt}[1]{\text{\tl{#1}}}
+\newcommand{\vc}[1]{\bm{#1}}
+\newcommand{\mt}[1]{\boldsymbol{#1}}
+
+\DeclareMathOperator\rank{rank}
+\DeclareMathOperator\diag{diag}
+\DeclareMathOperator\minimize{minimize}
+\DeclareMathOperator\argmin{arg\,min}
+\DeclareMathOperator{\tr}{tr}
+
+\newtheoremstyle{bftheo}%
+{}{}%
+{\itshape}{}%
+{\bfseries}{.}%
+{ }%
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\theoremstyle{bftheo}
+%\theoremstyle{plain}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{prop}[theorem]{Πρόταση}
+\newtheorem*{corollary}{Πόρισμα}
+
+\newtheoremstyle{bfdef}%
+{}{}%
+{}{}%
+{\bfseries}{.}%
+{ }%
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\theoremstyle{bfdef}
+%\theoremstyle{definition}
+\newtheorem{definition}{Ορισμός}
+
+\makeatletter
+\def\enumgreek#1{\expandafter\@enumgreek\csname c@#1\endcsname}
+\def\enumGreek#1{\expandafter\@enumGreek\csname c@#1\endcsname}
+\def\@enumgreek#1{\ifcase#1\or
+    \greektext{α}\or
+    \greektext{β}\or
+    \greektext{γ}\or
+    \greektext{δ}\or
+    \greektext{ε}\or
+    \greektext{ζ}\or
+    \greektext{η}\or
+    \greektext{θ}\or
+    \greektext{ι}\or
+    \greektext{κ}\or
+    \greektext{λ}\or
+    \greektext{μ}\or
+    \greektext{ν}\or
+    \greektext{ξ}\or
+    \greektext{ο}\or
+    \greektext{π}\or
+    \greektext{ρ}\or
+    \greektext{σ}\or
+    \greektext{τ}\or
+    \greektext{υ}\or
+    \greektext{φ}\or
+    \greektext{χ}\or
+    \greektext{ψ}\or
+\greektext{ω}\fi}
+\def\@enumGreek#1{\ifcase#1\or
+    \greektext{Α}\or
+    \greektext{Β}\or
+    \greektext{Γ}\or
+    \greektext{Δ}\or
+    \greektext{Ε}\or
+    \greektext{Ζ}\or
+    \greektext{Η}\or
+    \greektext{Θ}\or
+    \greektext{Ι}\or
+    \greektext{Κ}\or
+    \greektext{Λ}\or
+    \greektext{Μ}\or
+    \greektext{Ν}\or
+    \greektext{Ξ}\or
+    \greektext{Ο}\or
+    \greektext{Π}\or
+    \greektext{Ρ}\or
+    \greektext{Σ}\or
+    \greektext{Τ}\or
+    \greektext{Υ}\or
+    \greektext{Φ}\or
+    \greektext{Χ}\or
+    \greektext{Ψ}\or
+\greektext{Ω}\fi}
+\makeatother
+\AddEnumerateCounter{\enumgreek}{\@enumgreek}{24}
+\AddEnumerateCounter{\enumGreek}{\@enumGreek}{12}
+
+\newcommand{\clearemptydoublepage}{\cleardoublepage \thispagestyle{plain}}
+\newcommand{\clearemptypage}{\clearpage \thispagestyle{plain}}

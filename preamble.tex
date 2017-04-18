@@ -1,0 +1,65 @@
+\usepackage[english,greek]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{bm}
+
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[scaled=0.96]{inconsolata}
+
+\usepackage{csquotes}
+\usepackage[backend=biber, bibencoding=auto, autolang=other]{biblatex}
+\addbibresource{bible.bib}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[hidelinks,unicode]{hyperref}
+
+\usepackage{tabulary}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    showstringspaces=false
+}
+\lstset{style=mystyle}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\listalgorithmname}{\tl{List of Algorithms}}
+
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+%\usepackage{geometry}
+%\headsep=30pt
+%\footskip = 40pt
+
+\usepackage{setspace}
+\onehalfspacing  %One_And_a_Half
+\usepackage{parskip}  %Paragraph_Indentation-Spacing
+\parskip=11pt \advance\parskip by -1pt plus 3pt
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+\pagestyle{headings}
+
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{20pt}{5pt}
+\titlespacing{\subsection}{0pt}{15pt}{0pt}
+
+\usepackage[small,bf]{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}

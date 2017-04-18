@@ -1,0 +1,37 @@
+\documentclass[a4paper,11pt]{report}
+\include{preamble}
+\include{macros}
+
+\begin{document}
+\include{cover}
+\clearemptypage
+
+\titleformat{\chapter}[display]{\normalsize}{}
+{}{ \bf\Huge }[\vspace{10pt}]
+
+\tableofcontents
+\clearemptypage
+
+\listoffigures
+\clearemptypage
+
+\titleformat{\chapter}[display]{}{\titlerule[2.0pt]\vspace{5pt}\titlerule[0.5pt]\vspace{-8pt}
+\LARGE{Κεφάλαιο} \bfseries\Huge\thechapter}
+{10pt}{\titlerule[0.5pt] \vspace{20pt} \bf\huge }[\vspace{0pt}]
+
+\include{chapters/prelim}
+\clearemptypage
+
+\include{chapters/stab}
+\clearemptypage
+
+\include{chapters/uncert}
+\clearemptypage
+
+\titleformat{\chapter}[display]{\normalsize}{}
+{}{ \bf\Huge }[\vspace{10pt}]
+
+\addcontentsline{toc}{chapter}{\numberline{}Βιβλιογραφία}
+\eng{\printbibliography[title=\gr{Βιβλιογραφία}]}
+\clearemptypage
+\end{document}
