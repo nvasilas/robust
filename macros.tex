@@ -2,7 +2,9 @@
 \newcommand{\gr}[1]{\greektext{#1}}
 \newcommand{\eng}[1]{\begin{otherlanguage}{english} #1 \end{otherlanguage}}
 \newcommand{\greek}[1]{\begin{otherlanguage}{greek} #1 \end{otherlanguage}}
+
 \renewcommand\thesubfigure{\greektext{\alph{subfigure}}}
+\newcommand{\captionG}[1]{\caption{\gr{#1}}}
 
 \newcommand{\mono}[1]{\tl{\texttt{#1}}}
 \newcommand{\mathtxt}[1]{\text{\tl{#1}}}
@@ -93,7 +95,7 @@
 \greektext{Ω}\fi}
 \makeatother
 \AddEnumerateCounter{\enumgreek}{\@enumgreek}{24}
-\AddEnumerateCounter{\enumGreek}{\@enumGreek}{12}
+\AddEnumerateCounter{\enumGreek}{\@enumGreek}{24}
 
 \newcommand{\clearemptydoublepage}{\cleardoublepage \thispagestyle{plain}}
 \newcommand{\clearemptypage}{\clearpage \thispagestyle{plain}}

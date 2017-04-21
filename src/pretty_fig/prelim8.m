@@ -1,0 +1,13 @@
+A = [0, 1; 2, 1];
+B = [0; 1];
+C = [1, 1];
+[K, s, e] = lqr(A, B, eye(2), 10, []);
+[y, t] = step(ss(A - B*K, B, C, []));
+hold on;
+plot(t, y, 'LineWidth', 1.0);
+plot([t(1) t(end)], [0.493864798324795 0.493864798324795 ], 'k:', 'LineWidth', 1.0);
+xlim([0 t(end)]);
+grid on;
+xlabel('Time (seconds)','interpreter','latex');
+ylabel('Amplitude','interpreter','latex');
+matlab2tikz('prelim8.tex');

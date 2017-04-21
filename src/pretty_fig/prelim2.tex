@@ -1,0 +1,52 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74000}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=5.358in,
+height=4.226in,
+at={(0.899in,0.57in)},
+scale only axis,
+xmin=-2.5,
+xmax=0,
+xlabel style={font=\color{white!15!black}},
+xlabel={Real Axis (seconds$^{-1}$)},
+ymin=-2,
+ymax=2,
+ylabel style={font=\color{white!15!black}},
+ylabel={Imaginary Axis (seconds$^{-1}$)},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+xmajorgrids,
+ymajorgrids
+]
+\addplot [color=mycolor1, line width=1.0pt, mark size=4.0pt, mark=o, mark options={solid, mycolor1}, forget plot]
+  table[row sep=crcr]{%
+-2.28077640640442	0\\
+};
+\addplot [color=mycolor1, line width=1.0pt, mark size=4.0pt, mark=o, mark options={solid, mycolor1}, forget plot]
+  table[row sep=crcr]{%
+-0.219223593595585	0\\
+};
+\addplot [color=mycolor1, line width=1.0pt, mark size=4.0pt, mark=x, mark options={solid, mycolor1}, forget plot]
+  table[row sep=crcr]{%
+-1.5	1.6583123951777\\
+};
+\addplot [color=mycolor1, line width=1.0pt, mark size=4.0pt, mark=x, mark options={solid, mycolor1}, forget plot]
+  table[row sep=crcr]{%
+-1.5	-1.6583123951777\\
+};
+\addplot [color=black, dotted, line width=1.0pt, forget plot]
+  table[row sep=crcr]{%
+-2.5	0\\
+0	0\\
+};
+\end{axis}
+\end{tikzpicture}%

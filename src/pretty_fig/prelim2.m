@@ -1,0 +1,12 @@
+sys = tf([2, 5, 1], [1, 3, 5]);
+[p, z] = pzmap(sys);
+hold on;
+plot(z(1), 0,'Color',[0,0.447,0.74],'Marker','o','LineWidth', 1.0,'MarkerSize',8);
+plot(z(2),0,'Color',[0 0.447 0.74],'Marker','o','LineWidth', 1.0,'MarkerSize',8);
+plot(real(p(1)), imag(p(1)),'Color',[0 0.447 0.74],'Marker','x','LineWidth', 1.0,'MarkerSize',8);
+plot(real(p(2)), imag(p(2)),'Color',[0 0.447 0.74],'Marker','x','LineWidth', 1.0,'MarkerSize',8);
+plot([-2.5 0], [0 0], 'k:', 'LineWidth', 1.0);
+xlabel('Real Axis (seconds$^{-1}$)','interpreter','latex');
+ylabel('Imaginary Axis (seconds$^{-1}$)','interpreter','latex');
+grid on;
+matlab2tikz('prelim2.tex');

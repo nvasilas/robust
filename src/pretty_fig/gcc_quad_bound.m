@@ -39,23 +39,27 @@ function makeplot(A, B, R, R_t_inv, P, Pnot, Gc)
     [t, x] = ode45(@(t, x) ...
 	state(t, x, A - B*(R\(B'*Pnot))), [0 10], [-1; 2]);
     plot(t, x, t, Knot*x','LineWidth',1.0);
-    title('Initial System')
-    legend('x_1(t)', 'x_2(t)', 'u(t)');
-    grid on;
+    makepretty('gcc_quad_bound1')
 
     figure(2)
     [t, x] = ode45(@(t, x) ...
 	state(t, x, Gc(1, 1, 1)), [0 15], [-1; 2]);
     plot(t, x, t, K*x','LineWidth',1.0);
-    title('Uncertain System r1 = 1, r2 = 1, p1 = 1')
-    legend('x_1(t)', 'x_2(t)', 'u(t)');
-    grid on;
+    makepretty('gcc_quad_bound2')
 
     figure(3)
     [t, x] = ode45(@(t, x) ...
 	state(t, x, Gc(-1, -1, -0.5)), [0 10], [-1; 2]);
     plot(t, x, t, K*x','LineWidth',1.0);
-    title('Uncertain System r1 = -1, r2 = -1, p1 = -0.5')
-    legend('x_1(t)', 'x_2(t)', 'u(t)');
+    makepretty('gcc_quad_bound3')
+end
+
+function makepretty(string)
+    xlabel('Time (seconds)','interpreter','latex');
+    ylabel('Amplitude','interpreter','latex');
     grid on;
+    l = legend(['$x_1(t)$'], ['$x_2(t)$'], ['$u(t)$']);
+    set(l,'Interpreter','Latex');
+    cleanfigure;
+    matlab2tikz(strcat(string, '.tex'));
 end

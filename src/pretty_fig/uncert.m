@@ -33,9 +33,10 @@ r2 = 1;
 %% Stability through uncertainties check
 %Now check if K that was calculated for the matrix A,
 %stabilizes all the uncertain systems that arise
+
 figure(1)
-title('Stability Check on the plane of uncertainties');
-hold all;
+cleanfigure;
+hold on;
 for i = -10:1:10
     for j = -10:1:10
         A_uncertain = A + A1*i + A2*j - B*K;
@@ -51,18 +52,27 @@ for i = -10:1:10
     end
 end
 grid on;
-xlabel('Uncertainty r1');
-ylabel('Uncertainty r2');
+xlabel('Uncertainty $r_1$','interpreter','latex');
+ylabel('Uncertainty $r_2$','interpreter','latex');
+matlab2tikz('uncert_r.tex');
 
 %% Plot the step responces for one of the stable systems
 %that arise from certain values of uncertainties.
 % Also plot the initial stabilized system and
 %compare it with the uncertain one.
 figure(2)
-title('Step Responses');
-hold all;
+hold on;
+cleanfigure;
 sys1 = ss(Ac, B, C, D);
 sys2 = ss(A + A1*2 + A2*2 - B*K, B, C, D);
-step(sys1, sys2);
+[y1, ~] = step(sys1);
+[y2, t]  = step(sys2);
+plot(t, y1, t, y2, 'LineWidth', 1.0);
+plot([t(1) t(end)], [0.707106 0.707106], 'k:', 'LineWidth', 1.0);
+xlim([0 t(end)]);
 grid on;
-legend('Initial Stabilized System','Uncertain Stable System');
+l = legend('Initial Stabilized System','Uncertain Stable System');
+set(l,'Interpreter','Latex');
+xlabel('Time (seconds)','interpreter','latex');
+ylabel('Amplitude','interpreter','latex');
+%matlab2tikz('uncert_step.tex');

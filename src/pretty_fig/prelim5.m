@@ -1,0 +1,10 @@
+sys = tf([1], [1, 0.5, 1]);
+[y, t] = step(sys);
+hold on;
+plot(t, y, 'LineWidth', 1.0);
+plot([t(1) t(end)], [1 1], 'k:', 'LineWidth', 1.0);
+xlim([0 t(end)]);
+grid on;
+xlabel('Time (seconds)','interpreter','latex');
+ylabel('Amplitude','interpreter','latex');
+matlab2tikz('prelim5.tex');
