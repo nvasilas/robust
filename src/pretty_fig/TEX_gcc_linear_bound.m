@@ -1,40 +1,8 @@
-function [P] = gcc_linear_bound()
-    A = [-1, 0; 1, -2];
-    B = [0; 1];
-    Q = eye(length(A));
-    R = 10;
-
-    A_1 = @(r1) r1*[0, 0; 3.0, 0];
-    A_2 = @(r2) r2*[0, 0; 0, 1.5];
-    DA = @(r1, r2) A_1(r1) + A_2(r2);
-    U = @(P, r1, r2, e) e*P + ...
-	(1/e)*(DA(r1, r2)'*P*DA(r1, r2));
-
-    e = 1;
-    Pnot = care(A, B, Q, R);
-    [P, fval] = fsolve(@(p) gare(p, A, B, Q, R, ...
-	U(p, 1, 1, e)), Pnot);
-
-    [P_t, fval_t] = fsolve(@(p_t) gcc_lyap(p_t, A, B, Q, R, ...
-	U(p_t, 1, 1, e)), P);
-
-    Gc = @(r1, r2) A + DA(r1, r2) - B*(R\(B'*P));
+function TEX_gcc_linear_bound()
+    addpath('../');
+    addpath('~/downloads/matlab2tikz-master/src/');
+    [A, B, R, P, Pnot, Gc] = gcc_linear_bound();
     makeplot(A, B, R, P, Pnot, Gc);
-end
-
-function f = gare(p, A, B, Q, R, U)
-    P = reshape(p(1:length(A)^2), size(A));
-    F = P*A + A'*P - P*B*(R\(B'*P)) + Q + U;
-    f = F(:);
-end
-
-function f = gcc_lyap(p, A, B, Q, R, U)
-    P = reshape(p(1:length(A)^2), size(A));
-    K_t = -R\(B'*P);
-    A_t = A + B*K_t;
-    Q_t = Q + U;
-    F = P*A_t + A_t'*P + Q_t + K_t'*R*K_t;
-    f = F(:);
 end
 
 function dxdt = state(~, x, Gc)

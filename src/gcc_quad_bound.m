@@ -1,4 +1,4 @@
-function [P] = gcc_quad_bound()
+function [A, B, R, R_t_inv, P, Pnot, Gc] = gcc_quad_bound();
     A = [-1, 0; 1, -2];
     B = [0; 1];
     Q = eye(length(A));

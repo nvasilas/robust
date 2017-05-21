@@ -1,4 +1,4 @@
-function [P, lambdaH] = gcc_quad_bound_gen()
+function [A, B, R, P, Pnot, Gc, e] = gcc_quad_bound_gen();
     A = [-1, 2; -1, -1];
     B = [0; 1];
     Q = eye(length(A));

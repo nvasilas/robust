@@ -1,4 +1,4 @@
-function [P] = gcc_lmi()
+function [A, B, R, P, Pnot, Gc, d] = gcc_lmi();
     A = [-1, 2; -1, -1];
     B = [0; 1];
     Q = eye(length(A));
@@ -17,7 +17,7 @@ function [P] = gcc_lmi()
     l = 1;
 
     D = [d_t1, d_t2];
-    E = [e_t1, e_t2];
+    E = [e_t1, e_t2]';
     F = f_t1;
     G = g_t1;
 
@@ -87,7 +87,7 @@ function [P] = gcc_lmi()
 	p1*T_t(1,1)^(0.5)*f_t1*T_t(1,1)^(-0.5)*g_t1';
 
     Gc = @(r1, r2, p1) ...
-	A + DA(r1, r2) - (B + DB(p1))*(R\(B'*P));
+        A + DA(r1, r2) - (B + DB(p1))*(R\(B'*P));
     Pnot = care(A, B, Q, R);
     makeplot(A, B, R, P, Pnot, Gc, d);
 end
