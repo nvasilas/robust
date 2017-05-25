@@ -1,48 +1,78 @@
-function pp_makeplot(p)
-    DA = @(r1, r2) ...
-        r1*p.D(:,1)*p.E(1,:) ...
-        + r2*p.D(:,2)*p.E(2,:);
-    Gc = @(r1, r2) ...
-        p.A + DA(r1, r2) - p.B*(p.R\(p.B'*p.P_f));
+function pp_makeplot(p, string)
     K = -p.R\(p.B'*p.P_f);
+
+    if strcmp(string, 'TEX')
+        addpath('./pretty_fig');
+        TEX_pp(p, K, @Gc, @state);
+        return
+    end
 
     close all;
     figure(1)
     [t, x] = ode45(@(t, x) ...
-        state(t, x, Gc(1, 1)), [0 6], [3; -2; 2]);
+        state(t, x, Gc(p, 0, 0)), [0 6], [3; -2; 2]);
     plot(t, x, t, K*x','LineWidth',1.0);
-    title('Uncertain System r1 = 1, r2 = 1')
+    title('Nominal System r1 = 0, r2 = 0')
     legend('x_1(t)', 'x_2(t)', 'x_3(t)', 'u(t)');
     grid on;
 
     figure(2)
     [t, x] = ode45(@(t, x) ...
-        state(t, x, Gc(-1, -1)), [0 6], [3; -2; 2]);
+        state(t, x, Gc(p, 1, 1)), [0 6], [3; -2; 2]);
+    plot(t, x, t, K*x','LineWidth',1.0);
+    title('Uncertain System r1 = 1, r2 = 1')
+    legend('x_1(t)', 'x_2(t)', 'x_3(t)', 'u(t)');
+    grid on;
+
+    figure(3)
+    [t, x] = ode45(@(t, x) ...
+        state(t, x, Gc(p, -1, -1)), [0 6], [3; -2; 2]);
     plot(t, x, t, K*x','LineWidth',1.0);
     title('Uncertain System r1 = -1, r2 = -1')
     legend('x_1(t)', 'x_2(t)', 'x_3(t)', 'u(t)');
     grid on;
 
-    maketable(p, Gc);
+    maketable(p);
 end
 
-function dxdt = state(~, x, Gc)
-    dxdt = Gc*x;
+function closed = Gc(p, r1, r2)
+    if (r1 > -eps) && (r1 < eps) ...
+            && (r2 > -eps) && (r2 < eps)
+        closed = pp_nominal(p);
+        return
+    end
+    DA = @(r1, r2) ...
+        r1*p.D(:,1)*p.E(1,:) ...
+        + r2*p.D(:,2)*p.E(2,:);
+    closed = p.A + DA(r1, r2) - p.B*(p.R\(p.B'*p.P_f));
 end
 
-function maketable(p, Gc)
-    fprintf('r1 = -1, r2 = -1 closed loop eigenvalues\n');
-    eig(Gc(-1, -1))
+function dxdt = state(~, x, K)
+    dxdt = K*x;
+end
 
-    fprintf('r1 = 1, r2 = 1 closed loop eigenvalues\n');
-    eig(Gc(1, 1))
+function print_msg(lambda)
+    fprintf('lambda_1 = %s\n', num2str(lambda(1)));
+    fprintf('lambda_2 = %s\n', num2str(lambda(2)));
+    fprintf('lambda_3 = %s\n', num2str(lambda(3)));
+end
 
-    fprintf('r1 = 1, r2 = -1 closed loop eigenvalues\n');
-    eig(Gc(1, -1))
+function maketable(p)
+    fprintf('closed loop eigenvalues for r1 = 0, r2 = 0\n');
+    print_msg(eig(Gc(p, 0, 0)));
 
-    fprintf('r1 = 0, r2 = -1 closed loop eigenvalues\n');
-    eig(Gc(0, -1))
+    fprintf('\n closed loop eigenvalues for r1 = -1, r2 = -1\n');
+    print_msg(eig(Gc(p, -1, -1)));
 
-    fprintf('r1 = 1, r2 = 0 closed loop eigenvalues\n');
-    eig(Gc(1, 0))
+    fprintf('\n closed loop eigenvalues for r1 = 1, r2 = 1\n');
+    print_msg(eig(Gc(p, 1, 1)));
+
+    fprintf('\n closed loop eigenvalues for r1 = 1, r2 = -1\n');
+    print_msg(eig(Gc(p, 1, -1)));
+
+    fprintf('\n closed loop eigenvalues for r1 = 0, r2 = -1\n');
+    print_msg(eig(Gc(p, 0, -1)));
+
+    fprintf('\n closed loop eigenvalues for r1 = 1, r2 = 0\n');
+    print_msg(eig(Gc(p, 1, 0)));
 end

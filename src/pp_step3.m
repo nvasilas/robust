@@ -35,7 +35,7 @@ function [P] = pp_step3(p)
     % set relative accuracy 1e-5
     options = [1e-5,0,0,0,0];
     % solve min problem
-    [copt xopt] = mincx(lmis, c, options);
+    [copt, xopt] = mincx(lmis, c, options);
     % solution matrix M_b
     M_b = dec2mat(lmis, xopt, M_b);
     % solution matrix W_b

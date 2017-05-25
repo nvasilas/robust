@@ -105,13 +105,13 @@
 όπου οι πίνακες \( A, B, C \) είναι
 \[
     A =
-    \begin{pmatrix}
+    \begin{bmatrix}
         0 & 1 & 0 \\
         0 & 0 & 1 \\
         -1 & -3 & 2
-    \end{pmatrix}, \quad
-    B = \begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}, \quad
-    C = \begin{pmatrix}1 & 1 & 1\end{pmatrix}.
+    \end{bmatrix}, \quad
+    B = \begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix}, \quad
+    C = \begin{bmatrix}1 & 1 & 1\end{bmatrix}.
 \]
 Το σύστημα είναι ασταθές, καθώς οι ιδιοτιμές του πίνακα κατάστασης
 \( A \) είναι \( \lambda_{1,2,3} = -0.2757, 1.1378 + 1.5273i, 1.1378
@@ -129,7 +129,7 @@
     \end{center}}
 υπολογίζουμε το βέλτιστο κέρδος
 \[
-    K = \begin{pmatrix}0.4142 & 1.7127 & 4.9027\end{pmatrix}.
+    K = \begin{bmatrix}0.4142 & 1.7127 & 4.9027\end{bmatrix}.
 \]
 Ο βέλτιστος νόμος ανάδρασης είναι \( u = -Kx \) που οδηγεί στο κλειστό σύστημα
 με πίνακα κατάστασης
@@ -145,11 +145,11 @@
 \( A \) γίνεται
 \[
     A =
-    \begin{pmatrix}
+    \begin{bmatrix}
         0 & 1 & 0 \\
         0 & 0 & 1 \\
         -1 & -3 + r_1 & 2 + r_2
-    \end{pmatrix},
+    \end{bmatrix},
 \]
 όπου \( r_1, r_2 \) εκφράζουν το εύρος της αβεβαιότητας. Σύμφωνα με τα όσα
 είπαμε παραπάνω, βρισκόμαστε στην κατηγορία της γραμμικής παραμετρικής
@@ -163,21 +163,21 @@
 οι αβεβαιότητες. Έτσι αντικαθιστώντας τους πίνακες στην παραπάνω σχέση προκύπτει
 \[
     A =
-    \begin{pmatrix}
+    \begin{bmatrix}
         0 & 1 & 0 \\
         0 & 0 & 1 \\
         -1 & -3 & 2
-    \end{pmatrix} +
-    \begin{pmatrix}
+    \end{bmatrix} +
+    \begin{bmatrix}
         0 & 0 & 0 \\
         0 & 0 & 0 \\
         0 & 1 & 0
-    \end{pmatrix}r_1 +
-    \begin{pmatrix}
+    \end{bmatrix}r_1 +
+    \begin{bmatrix}
         0 & 0 & 0 \\
         0 & 0 & 0 \\
         0 & 0 & 1
-    \end{pmatrix}r_2.
+    \end{bmatrix}r_2.
 \]
 
 Μεταβάλλοντας τις αβεβαιότητες \( r_1, r_2 \) εντός του εύρους τιμών \( [-10,
