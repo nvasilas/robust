@@ -21,5 +21,21 @@ function [p] = pp_data()
 
     p = struct('A', A, 'B', B, 'Q', Q, ...
         'Q_0', Q_0, 'R', R, 'n', n, 'k', k, ...
-        'D', D, 'E', E, 'a', a);
+        'D', D, 'E', E, 'a', a, 'sort_array', @sort_array);
+end
+
+function [V] = sort_array(V_, D, n)
+    % this function sorts the array
+    % of the generalized eigenvectors
+    % according to the form required by
+    % the step 2 of the algorithm
+    if n < 1
+        fprintf('Error n must >= 1\n');
+        return
+    end
+    [~, idx] = sort(diag(D));
+    V = V_(:, idx(1));
+    for i = 2 : 2*n
+        V = horzcat(V, V_(:, idx(i)));
+    end
 end

@@ -10,14 +10,14 @@ function [P_u] = pp_step2(p)
     % finding the jordan form because of the
     % slow implementation of MATLAB
 
-    [V, D] = eig(H);
-    V_ = [V(:, 1), V(:, 4), V(:, 3), ...
-        V(:, 2), V(:, 5), V(:, 6)];
+    [V_, D] = eig(H);
     % need to swap the columns of the
     % eigenvectors to get a diagonal
     % matrix with the negative eigenvalues
     % followed by the positive eigenvalues
-    W_0 = V_(1 : n, n+1: end);
-    Z_0 = V_(n + 1 : end, n + 1 : end);
+    V = p.sort_array(V_, D, n);
+
+    W_0 = V(1 : n, n+1: end);
+    Z_0 = V(n + 1 : end, n + 1 : end);
     P_u = Z_0/W_0;
 end
