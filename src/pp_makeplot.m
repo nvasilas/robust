@@ -38,7 +38,11 @@ end
 function closed = Gc(p, r1, r2)
     if (r1 > -eps) && (r1 < eps) ...
             && (r2 > -eps) && (r2 < eps)
-        closed = pp_nominal(p);
+        [closed, ~, error_flag] = pp_nominal(p);
+        if error_flag
+            fprintf('Error H, no distinct eigenvalues\n');
+            return
+        end
         return
     end
     DA = @(r1, r2) ...

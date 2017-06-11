@@ -1,4 +1,4 @@
-function [P_u] = pp_step2(p)
+function [P_u, error_flag] = pp_step2(p)
     A = p.A; B = p.B; Q = p.Q;
     R = p.R; n = p.n;
     T = p.T; U = p.U;
@@ -11,6 +11,11 @@ function [P_u] = pp_step2(p)
     % slow implementation of MATLAB
 
     [V_, D] = eig(H);
+    if 2*n ~= length(unique(diag(D)))
+        error_flag = true;
+    else
+        error_flag = false;
+    end
     % need to swap the columns of the
     % eigenvectors to get a diagonal
     % matrix with the negative eigenvalues

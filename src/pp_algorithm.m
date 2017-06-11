@@ -6,7 +6,11 @@ function pp_algorithm()
     if p.k == 0
         fprintf('Solving the nominal system for a = %f\n', p.a);
         fprintf('No uncertainties are present, k = 0\n');
-        [Gnom, Pnom] = pp_nominal(p);
+        [Gnom, Pnom, error_flag] = pp_nominal(p);
+        if error_flag
+            fprintf('Error H, no distinct eigenvalues\n');
+            return
+        end
         return
     end
 
@@ -22,8 +26,11 @@ function pp_algorithm()
     p.('U') = U;
 
     % step 2 of algorithm
-    [P_u] = pp_step2(p);
-    eig(P_u)
+    [P_u, error_flag] = pp_step2(p);
+    if error_flag
+        fprintf('Error H, no distinct eigenvalues\n');
+        return
+    end
     if any(eig(P_u) > eps)
         fprintf('Error, P_u is not negative definite\n');
         return

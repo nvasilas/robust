@@ -7,7 +7,7 @@ function [S] = pp_step1(p)
     M = lmivar(1, [n 1]);
     W = lmivar(1, [n 1]);
     %  k = 2
-    S = lmivar(1, [1 0; 1 0]);
+    S = lmivar(1, repmat([1 0], k, 1));
 
     %  1st lmi, -1 means LMI < 0
     %  (1,1) block, 's' means -A*W - W*A^T
